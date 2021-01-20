@@ -25,11 +25,11 @@ Local source, two end sync:
 ```tsx
 import * as React from 'react'
 
-import { usesyncState, localSource } from 'use-sync-state'
+import { useSyncState, localSource } from 'use-sync-state'
 
-const source = localSource('test')
+const source = localSource()
 const App = () => {
-  const [value, setValue] = usesyncState(altSource, 1)
+  const [value, setValue] = useSyncState('counter', altSource, 1)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )
@@ -41,7 +41,7 @@ Remote source, one direction sync:
 ```tsx
 import * as React from 'react'
 
-import { usesyncState, firebaseSource } from 'use-sync-state'
+import { useSyncState, firebaseSource } from 'use-sync-state'
 
 const firebaseConfig = {
   apiKey: 'whatanapikey',
@@ -54,10 +54,10 @@ const firebaseConfig = {
   measurementId: 'hoooge',
 }
 
-const source = firebaseSource(firebaseConfig, 'test')
+const source = firebaseSource(firebaseConfig, 'databaseName')
 const role = window.location.hash === '#receiver' ? 'receiver' : 'sender'
 const App = () => {
-  const [value, setValue] = usesyncState(altSource, 1, role)
+  const [value, setValue] = useSyncState('counter', altSource, 1, role)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )
