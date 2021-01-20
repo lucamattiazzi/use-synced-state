@@ -1,14 +1,14 @@
-# use-cloned-state
+# use-sync-state
 
 
-[![NPM](https://img.shields.io/npm/v/use-cloned-state.svg)](https://www.npmjs.com/package/use-cloned-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/use-sync-state.svg)](https://www.npmjs.com/package/use-sync-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
 ## What is this?
 
 Ever needed to sync a state between two instances of a React app? Well, you and I have something in common, not everyone has ever needed to do shit like this!
 
-Anyway, this is a simple hook that allows you to create a state/setter that will be immediatly cloned to a local/remote source via `BroadcastChannel` (local) or `Firebase` (remote), or any sync method you like!
+Anyway, this is a simple hook that allows you to create a state/setter that will be immediatly synced to a local/remote source via `BroadcastChannel` (local) or `Firebase` (remote), or any sync method you like!
 
 When creating a hook you need to provide a source: an object with `onData` and `sendData`, but worry not! a source generator for `BroadcastChannel` and `Firebase` is provided with the library, who would have thought???
 
@@ -16,7 +16,7 @@ You can use a hook as `receiver`, as `sender` or as `both` (default) in order to
 ## Install
 
 ```bash
-npm install --save use-cloned-state
+npm install --save use-sync-state
 ```
 
 ## Usage
@@ -25,11 +25,11 @@ Local source, two end sync:
 ```tsx
 import * as React from 'react'
 
-import { useClonedState, localSource } from 'use-cloned-state'
+import { usesyncState, localSource } from 'use-sync-state'
 
 const source = localSource('test')
 const App = () => {
-  const [value, setValue] = useClonedState(altSource, 1)
+  const [value, setValue] = usesyncState(altSource, 1)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )
@@ -41,7 +41,7 @@ Remote source, one direction sync:
 ```tsx
 import * as React from 'react'
 
-import { useClonedState, firebaseSource } from 'use-cloned-state'
+import { usesyncState, firebaseSource } from 'use-sync-state'
 
 const firebaseConfig = {
   apiKey: 'whatanapikey',
@@ -57,7 +57,7 @@ const firebaseConfig = {
 const source = firebaseSource(firebaseConfig, 'test')
 const role = window.location.hash === '#receiver' ? 'receiver' : 'sender'
 const App = () => {
-  const [value, setValue] = useClonedState(altSource, 1, role)
+  const [value, setValue] = usesyncState(altSource, 1, role)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useClonedState, localSource } from 'use-cloned-state'
+import { useSyncState, localSource } from 'use-sync-state'
 
-const source = localSource('maronn')
+const source = localSource()
 
 const App = () => {
-  const [value, setValue] = useClonedState(source, 1)
+  const [value, setValue] = useSyncState('test', source, 1)
   return <div onClick={() => setValue(value + 1)}>{value}</div>
 }
 export default App
