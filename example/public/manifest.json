@@ -1,6 +1,6 @@
 {
-  "short_name": "use-sync-state",
-  "name": "use-sync-state",
+  "short_name": "use-synced-state",
+  "name": "use-synced-state",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",

@@ -1,6 +1,6 @@
 {
-  "name": "use-sync-state-example",
-  "homepage": "https://lucamattiazzi.github.io/use-sync-state",
+  "name": "use-synced-state-example",
+  "homepage": "https://lucamattiazzi.github.io/use-synced-state",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -8,7 +8,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "^16.9.0",
     "react-scripts": "^3.0.1",
-    "use-sync-state": "link:.."
+    "use-synced-state": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

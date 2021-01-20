@@ -1,7 +1,7 @@
-# use-sync-state
+# use-synced-state
 
 
-[![NPM](https://img.shields.io/npm/v/use-sync-state.svg)](https://www.npmjs.com/package/use-sync-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/use-synced-state.svg)](https://www.npmjs.com/package/use-synced-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
 ## What is this?
@@ -16,7 +16,7 @@ You can use a hook as `receiver`, as `sender` or as `both` (default) in order to
 ## Install
 
 ```bash
-npm install --save use-sync-state
+npm install --save use-synced-state
 ```
 
 ## Usage
@@ -25,11 +25,11 @@ Local source, two end sync:
 ```tsx
 import * as React from 'react'
 
-import { useSyncState, localSource } from 'use-sync-state'
+import { useSyncedState, localSource } from 'use-synced-state'
 
 const source = localSource()
 const App = () => {
-  const [value, setValue] = useSyncState('counter', altSource, 1)
+  const [value, setValue] = useSyncedState('counter', altSource, 1)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )
@@ -41,7 +41,7 @@ Remote source, one direction sync:
 ```tsx
 import * as React from 'react'
 
-import { useSyncState, firebaseSource } from 'use-sync-state'
+import { useSyncedState, firebaseSource } from 'use-synced-state'
 
 const firebaseConfig = {
   apiKey: 'whatanapikey',
@@ -57,7 +57,7 @@ const firebaseConfig = {
 const source = firebaseSource(firebaseConfig, 'databaseName')
 const role = window.location.hash === '#receiver' ? 'receiver' : 'sender'
 const App = () => {
-  const [value, setValue] = useSyncState('counter', altSource, 1, role)
+  const [value, setValue] = useSyncedState('counter', altSource, 1, role)
   return (
     <div onClick={() => setValue(value + 1)}{value}</div>
   )

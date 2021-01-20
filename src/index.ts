@@ -13,7 +13,7 @@ export type Source<T> = {
   sendData: (key: string, data: T) => void
 }
 
-function useSyncState<T>(
+function useSyncedState<T>(
   key: string,
   source: Source<T>,
   baseValue: T | null = null,
@@ -34,4 +34,4 @@ function useSyncState<T>(
   return [value, setData]
 }
 
-export { localSource, firebaseSource, useSyncState }
+export { localSource, firebaseSource, useSyncedState }
